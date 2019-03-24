@@ -106,15 +106,15 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "convenience-construction/#",
-    "page": "Convenience Construcors",
-    "title": "Convenience Construcors",
+    "page": "Convenience Constructors",
+    "title": "Convenience Constructors",
     "category": "page",
     "text": ""
 },
 
 {
     "location": "convenience-construction/#Convenience-notation-1",
-    "page": "Convenience Construcors",
+    "page": "Convenience Constructors",
     "title": "Convenience notation",
     "category": "section",
     "text": "For linear and cubic spline interpolations, LinearInterpolation and CubicSplineInterpolation can be used to create interpolating and extrapolating objects handily:f(x) = log(x)\nxs = 1:0.2:5\nA = [f(x) for x in xs]\n\n# linear interpolation\ninterp_linear = LinearInterpolation(xs, A)\ninterp_linear(3) # exactly log(3)\ninterp_linear(3.1) # approximately log(3.1)\n\n# cubic spline interpolation\ninterp_cubic = CubicSplineInterpolation(xs, A)\ninterp_cubic(3) # exactly log(3)\ninterp_cubic(3.1) # approximately log(3.1)which support multidimensional data as well:f(x,y) = log(x+y)\nxs = 1:0.2:5\nys = 2:0.1:5\nA = [f(x,y) for x in xs, y in ys]\n\n# linear interpolation\ninterp_linear = LinearInterpolation((xs, ys), A)\ninterp_linear(3, 2) # exactly log(3 + 2)\ninterp_linear(3.1, 2.1) # approximately log(3.1 + 2.1)\n\n# cubic spline interpolation\ninterp_cubic = CubicSplineInterpolation((xs, ys), A)\ninterp_cubic(3, 2) # exactly log(3 + 2)\ninterp_cubic(3.1, 2.1) # approximately log(3.1 + 2.1)For extrapolation, i.e., when interpolation objects are evaluated in coordinates outside the range provided in constructors, the default option for a boundary condition is Throw so that they will return an error. Interested users can specify boundary conditions by providing an extra parameter for extrapolation_bc:f(x) = log(x)\nxs = 1:0.2:5\nA = [f(x) for x in xs]\n\n# extrapolation with linear boundary conditions\nextrap = LinearInterpolation(xs, A, extrapolation_bc = Line())\n\n@test extrap(1 - 0.2) # ≈ f(1) - (f(1.2) - f(1))\n@test extrap(5 + 0.2) # ≈ f(5) + (f(5) - f(4.8))You can also use a \"fill\" value, which gets returned whenever you ask for out-of-range values:extrap = LinearInterpolation(xs, A, extrapolation_bc = NaN)\n@test isnan(extrap(5.2))Irregular grids are supported as well; note that presently only LinearInterpolation supports irregular grids.xs = [x^2 for x = 1:0.2:5]\nA = [f(x) for x in xs]\n\n# linear interpolation\ninterp_linear = LinearInterpolation(xs, A)\ninterp_linear(1) # exactly log(1)\ninterp_linear(1.05) # approximately log(1.05)"
