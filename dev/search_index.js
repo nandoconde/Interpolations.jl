@@ -145,6 +145,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api/#Interpolations.bounds-Tuple{AbstractInterpolation}",
+    "page": "Library",
+    "title": "Interpolations.bounds",
+    "category": "method",
+    "text": "bounds(itp::AbstractInterpolation)\n\nReturn the bounds of the domain of itp as a tuple of (min, max) pairs for each coordinate. This is best explained by example:\n\njulia> itp = interpolate([1 2 3; 4 5 6], BSpline(Linear()));\n\njulia> bounds(itp)\n((1, 2), (1, 3))\n\njulia> data = 1:3;\n\njulia> knots = ([10, 11, 13.5],);\n\njulia> itp = interpolate(knots, data, Gridded(Linear()));\n\njulia> bounds(itp)\n((10.0, 13.5),)\n\n\n\n\n\n"
+},
+
+{
     "location": "api/#Interpolations.extrapolate-Union{Tuple{ET}, Tuple{IT}, Tuple{N}, Tuple{T}, Tuple{AbstractInterpolation{T,N,IT},ET}} where ET<:Union{Tuple{Vararg{Union{Tuple{BoundaryCondition,BoundaryCondition}, BoundaryCondition},N} where N}, BoundaryCondition} where IT where N where T",
     "page": "Library",
     "title": "Interpolations.extrapolate",
