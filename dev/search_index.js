@@ -85,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Interpolation algorithms",
     "title": "Parametric splines",
     "category": "section",
-    "text": "Given a set a knots with coordinates x(t) and y(t), a parametric spline S(t) = (x(t),y(t)) parametrized by t in [0,1] can be constructed with the following code adapted from a post by Tomas Lycken:using Interpolations\n\nt = 0:.1:1\nx = sin.(2π*t)\ny = cos.(2π*t)\nA = hcat(x,y)\n\nitp = scale(interpolate(A, (BSpline(Cubic(Natural(OnGrid()))), NoInterp())), t, 1:2)\n\ntfine = 0:.01:1\nxs, ys = [itp(t,1) for t in tfine], [itp(t,2) for t in tfine]We can then plot the spline with:using Plots\n\nscatter(x, y, label=\"knots\")\nplot!(xs, ys, label=\"spline\")(Image: parametric spline)"
+    "text": "Given a set a knots with coordinates x(t) and y(t), a parametric spline S(t) = (x(t),y(t)) parametrized by t in [0,1] can be constructed with the following code adapted from a post by Tomas Lycken:using Interpolations\n\nt = 0:.1:1\nx = sin.(2π*t)\ny = cos.(2π*t)\nA = hcat(x,y)\n\nitp = Interpolations.scale(interpolate(A, (BSpline(Cubic(Natural(OnGrid()))), NoInterp())), t, 1:2)\n\ntfine = 0:.01:1\nxs, ys = [itp(t,1) for t in tfine], [itp(t,2) for t in tfine]We can then plot the spline with:using Plots\n\nscatter(x, y, label=\"knots\")\nplot!(xs, ys, label=\"spline\")(Image: parametric spline)"
 },
 
 {
