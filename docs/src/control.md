@@ -31,7 +31,7 @@ There are more options available, for example:
 # In-place interpolation
 itp = interpolate!(A, BSpline(Quadratic(InPlace(OnCell()))))
 ```
-which destroys the input `A` but also does not need to allocate as much memory.
+which does not allocate as much memory, but as a side effect destroys the input `A` and may remove data at the endpoints, reducing the domain of interpolation.
 
 ### Scaled BSplines
 
